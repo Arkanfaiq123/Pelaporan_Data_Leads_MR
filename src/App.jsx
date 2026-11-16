@@ -40,7 +40,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="bg-[#f8f5fa] text-slate-800 flex flex-col min-h-screen font-sans selection:bg-[#6f2c91] selection:text-white">
+    <div className="bg-[#f5effb] text-slate-800 flex flex-col min-h-screen font-sans selection:bg-[#6f2c91] selection:text-white">
       {/* Global Toast */}
       <Toast toast={toast} onClose={closeToast} />
 
