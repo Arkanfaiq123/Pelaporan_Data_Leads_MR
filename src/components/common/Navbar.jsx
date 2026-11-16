@@ -1,13 +1,13 @@
 import React from 'react';
-import { Calculator, ClipboardList } from 'lucide-react';
+import { Database, ShieldCheck } from 'lucide-react';
 
-export default function Navbar({ activeTab, onTabChange }) {
+export default function Navbar() {
   return (
-    <nav className="bg-[#6f2c91] sticky top-0 z-30 shadow-md">
+    <nav className="bg-gradient-to-r from-[#581c87] via-[#6f2c91] to-[#7e22ce] sticky top-0 z-40 shadow-lg border-b border-purple-400/20 backdrop-blur-md">
       <div className="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
         {/* Brand */}
-        <div className="flex items-center gap-3">
-          <div className="bg-white px-2.5 py-1.5 rounded-xl shadow-sm flex items-center justify-center">
+        <div className="flex items-center gap-3.5">
+          <div className="bg-white/95 p-1.5 px-3 rounded-2xl shadow-md border border-white/40 flex items-center justify-center transform hover:scale-105 transition-transform duration-200">
             <img
               src="https://i.ibb.co.com/LDTC07KK/image-removebg-preview-1.png"
               alt="MyRepublic Logo"
@@ -20,42 +20,26 @@ export default function Navbar({ activeTab, onTabChange }) {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-sm font-extrabold text-white tracking-wide">MyRepublic Hub</span>
-              <span className="hidden sm:inline-block px-2 py-0.5 bg-purple-900/60 text-purple-200 text-[10px] font-bold rounded-full uppercase">
+              <span className="text-base font-black text-white tracking-wide drop-shadow-sm">
+                MyRepublic <span className="text-amber-300 font-extrabold">Hub</span>
+              </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-white/15 border border-white/20 text-purple-100 text-[10px] font-black rounded-full uppercase tracking-wider backdrop-blur-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                 Purwokerto
               </span>
             </div>
-            <p className="text-[11px] text-purple-200 font-medium">Sistem Kalkulator Insentif & Leads</p>
+            <p className="text-[11px] text-purple-200/90 font-medium tracking-wide">
+              Sistem Pelaporan Data Leads
+            </p>
           </div>
         </div>
 
-        {/* Tab Buttons */}
-        <div className="flex gap-1 bg-black/15 p-1 rounded-xl border border-white/15">
-          <button
-            type="button"
-            onClick={() => onTabChange('kalkulator')}
-            className={`px-3.5 py-2 rounded-lg font-bold text-xs sm:text-sm transition-all flex items-center gap-2 ${
-              activeTab === 'kalkulator'
-                ? 'bg-white text-[#6f2c91] shadow-sm'
-                : 'text-white/80 hover:text-white hover:bg-white/10'
-            }`}
-          >
-            <Calculator className="w-4 h-4 shrink-0" />
-            <span>Kalkulator Insentif</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => onTabChange('report')}
-            className={`px-3.5 py-2 rounded-lg font-bold text-xs sm:text-sm transition-all flex items-center gap-2 ${
-              activeTab === 'report'
-                ? 'bg-white text-[#6f2c91] shadow-sm'
-                : 'text-white/80 hover:text-white hover:bg-white/10'
-            }`}
-          >
-            <ClipboardList className="w-4 h-4 shrink-0" />
-            <span>Data Leads</span>
-          </button>
+        {/* Status / Live Mode */}
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 px-3 py-1 rounded-xl text-xs font-bold">
+            <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <span className="hidden xs:inline">Live Mode</span>
+          </div>
         </div>
       </div>
     </nav>
