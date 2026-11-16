@@ -46,9 +46,6 @@ export default function StepArea({ onSelectArea, onGoToCekLead }) {
               <div className="w-14 h-14 bg-purple-50 text-[#6f2c91] rounded-2xl flex items-center justify-center ring-4 ring-purple-50/70 group-hover:bg-gradient-to-tr group-hover:from-[#6f2c91] group-hover:to-[#9333ea] group-hover:text-white transition-all duration-300 shadow-sm">
                 <Map className="w-7 h-7" />
               </div>
-              <span className="text-[11px] font-black uppercase tracking-wider px-3 py-1 bg-purple-50 text-[#6f2c91] rounded-full group-hover:bg-[#6f2c91] group-hover:text-white transition-colors">
-                Klaster 01
-              </span>
             </div>
 
             <h3 className="font-black text-slate-800 text-lg uppercase tracking-wide group-hover:text-[#6f2c91] transition-colors">
@@ -81,9 +78,6 @@ export default function StepArea({ onSelectArea, onGoToCekLead }) {
               <div className="w-14 h-14 bg-emerald-50 text-emerald-700 rounded-2xl flex items-center justify-center ring-4 ring-emerald-50/70 group-hover:bg-gradient-to-tr group-hover:from-emerald-600 group-hover:to-teal-500 group-hover:text-white transition-all duration-300 shadow-sm">
                 <MapPin className="w-7 h-7" />
               </div>
-              <span className="text-[11px] font-black uppercase tracking-wider px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                Klaster 02
-              </span>
             </div>
 
             <h3 className="font-black text-slate-800 text-lg uppercase tracking-wide group-hover:text-emerald-700 transition-colors">
@@ -114,9 +108,6 @@ export default function StepArea({ onSelectArea, onGoToCekLead }) {
               <BarChart3 className="w-8 h-8" />
             </div>
             <div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-100 text-[#6f2c91] text-[10px] font-black uppercase tracking-wider mb-1.5">
-                <Users className="w-3 h-3" /> Rekap Real-Time
-              </div>
               <h3 className="font-black text-slate-800 text-lg uppercase tracking-wide group-hover:text-[#6f2c91] transition-colors">
                 Cek Jumlah Data Lead
               </h3>

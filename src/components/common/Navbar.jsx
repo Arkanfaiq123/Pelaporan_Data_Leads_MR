@@ -20,11 +20,7 @@ export default function Navbar() {
           <div>
             <div className="flex items-center gap-2">
               <span className="text-base font-black text-white tracking-wide drop-shadow-sm">
-                MyRepublic <span className="text-amber-300 font-extrabold">Hub</span>
-              </span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-white/15 border border-white/20 text-purple-100 text-[10px] font-black rounded-full uppercase tracking-wider backdrop-blur-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                Purwokerto
+                MyRepublic <span className="text-amber-300 font-extrabold">Purwokerto</span>
               </span>
             </div>
             <p className="text-[11px] text-purple-200/90 font-medium tracking-wide">
