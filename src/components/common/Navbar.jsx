@@ -1,10 +1,9 @@
 import React from 'react';
-import { Database, ShieldCheck } from 'lucide-react';
 
 export default function Navbar() {
   return (
     <nav className="bg-gradient-to-r from-[#581c87] via-[#6f2c91] to-[#7e22ce] sticky top-0 z-40 shadow-lg border-b border-purple-400/20 backdrop-blur-md">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
+      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center">
         {/* Brand */}
         <div className="flex items-center gap-3.5">
           <div className="bg-white/95 p-1.5 px-3 rounded-2xl shadow-md border border-white/40 flex items-center justify-center transform hover:scale-105 transition-transform duration-200">
@@ -31,14 +30,6 @@ export default function Navbar() {
             <p className="text-[11px] text-purple-200/90 font-medium tracking-wide">
               Sistem Pelaporan Data Leads
             </p>
-          </div>
-        </div>
-
-        {/* Status / Live Mode */}
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 px-3 py-1 rounded-xl text-xs font-bold">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span className="hidden xs:inline">Live Mode</span>
           </div>
         </div>
       </div>
