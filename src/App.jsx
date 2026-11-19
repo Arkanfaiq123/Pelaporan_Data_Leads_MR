@@ -40,7 +40,12 @@ export default function App() {
   }, []);
 
   return (
-    <div className="bg-[#f5effb] text-slate-800 flex flex-col min-h-screen font-sans selection:bg-[#6f2c91] selection:text-white">
+    <div className="relative min-h-screen bg-[#f8f3fc] text-slate-800 flex flex-col font-sans selection:bg-[#6f2c91] selection:text-white overflow-x-hidden">
+      {/* Background Decorative Ambient Glows */}
+      <div className="fixed top-0 left-1/4 -translate-x-1/2 w-[600px] h-[450px] bg-gradient-to-br from-purple-400/15 to-fuchsia-400/5 rounded-full blur-3xl pointer-events-none -z-10"></div>
+      <div className="fixed top-40 right-0 w-[550px] h-[550px] bg-gradient-to-bl from-purple-500/10 via-indigo-400/5 to-transparent rounded-full blur-3xl pointer-events-none -z-10"></div>
+      <div className="fixed bottom-0 left-10 w-[450px] h-[450px] bg-gradient-to-tr from-purple-300/10 to-transparent rounded-full blur-2xl pointer-events-none -z-10"></div>
+
       {/* Global Toast */}
       <Toast toast={toast} onClose={closeToast} />
 
@@ -55,7 +60,7 @@ export default function App() {
       <Navbar />
 
       {/* Main Content Area */}
-      <main className="flex-1 w-full max-w-6xl mx-auto p-4 sm:p-6 mt-1">
+      <main className="flex-1 w-full max-w-6xl mx-auto p-4 sm:p-6 lg:p-8 mt-2 relative z-10">
         <ReportView
           clusters={clusters}
           showToast={showToast}
@@ -64,10 +69,15 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 mt-8 w-full">
-        <div className="max-w-2xl mx-auto px-4 space-y-1">
-          <p className="font-bold text-slate-700">&copy; {new Date().getFullYear()} MyRepublic Purwokerto &bull; Sistem Pelaporan Leads</p>
-          <p className="text-[11px] text-slate-400">Dioptimalkan untuk smartphone & desktop &bull; Ditenagai oleh React 18</p>
+      <footer className="mt-16 bg-white/70 backdrop-blur-md border-t border-purple-100 py-8 text-center text-xs text-slate-500 w-full relative z-10">
+        <div className="max-w-3xl mx-auto px-4 flex flex-col items-center gap-2">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span className="font-extrabold text-slate-700 tracking-wide">MyRepublic Purwokerto &bull; Sistem Sales AE</span>
+          </div>
+          <p className="text-[11px] text-slate-400">
+            Platform Pelaporan Real-Time &bull; Dioptimalkan untuk Mobile Smartphone & Desktop
+          </p>
         </div>
       </footer>
     </div>

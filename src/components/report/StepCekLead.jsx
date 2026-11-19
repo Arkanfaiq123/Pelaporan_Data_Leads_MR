@@ -97,44 +97,56 @@ export default function StepCekLead({ onBack, showToast, setLoader }) {
   }, [teamData]);
 
   return (
-    <section className="space-y-6 max-w-3xl mx-auto animate-in fade-in duration-300">
+    <section className="space-y-6 max-w-3xl mx-auto py-2 animate-in fade-in duration-300">
       <button
         type="button"
         onClick={onBack}
-        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#6f2c91] hover:text-[#582173] transition"
+        className="inline-flex items-center gap-2 text-xs font-bold text-[#6f2c91] hover:text-[#582173] px-3.5 py-1.5 rounded-xl hover:bg-purple-100/60 transition"
       >
         <ArrowLeft className="w-4 h-4" /> Kembali ke Menu Utama
       </button>
 
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden p-5 sm:p-6 space-y-5">
-        <div className="text-center mb-6">
-          <h3 className="font-extrabold text-xl text-slate-800">Cek Jumlah Data Lead Sales</h3>
-          <p className="text-xs text-slate-500 mt-1">Cari berdasarkan ID SC UMP atau pilih nama ASM untuk melihat rekapitulasi tim</p>
+      <div className="bg-white/95 backdrop-blur-md rounded-3xl border border-purple-100 shadow-xl shadow-purple-950/5 overflow-hidden">
+        {/* Banner Header */}
+        <div className="bg-gradient-to-r from-[#4a1264] via-[#6f2c91] to-[#390d4e] p-6 sm:p-8 text-white relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none -mt-10 -mr-10"></div>
+          <div className="relative z-10">
+            <span className="text-[11px] font-black uppercase tracking-wider text-purple-200">
+              Monitoring & Analisis Performa
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mt-1">Cek Jumlah Data Lead Sales</h2>
+            <p className="text-xs sm:text-sm text-purple-100/80 mt-1">
+              Pantau akumulasi data prospek perorangan AE atau rekapitulasi performa tim ASM bulan berjalan.
+            </p>
+          </div>
         </div>
 
-        {/* Tab switchers */}
-        <div className="flex p-1 bg-slate-100 rounded-xl mb-4">
-          <button
-            type="button"
-            onClick={() => setActiveTab('ae')}
-            className={`flex-1 py-2.5 text-xs sm:text-sm font-bold rounded-lg transition-all ${activeTab === 'ae'
-                ? 'bg-white text-[#6f2c91] shadow-sm'
-                : 'text-slate-500 hover:text-slate-700'
+        <div className="p-6 sm:p-8 space-y-6">
+          {/* Tab switchers */}
+          <div className="flex p-1.5 bg-purple-50/70 border border-purple-100 rounded-2xl">
+            <button
+              type="button"
+              onClick={() => setActiveTab('ae')}
+              className={`flex-1 py-3 text-xs sm:text-sm font-extrabold rounded-xl transition-all ${
+                activeTab === 'ae'
+                  ? 'bg-gradient-to-r from-[#6f2c91] to-[#8c38b8] text-white shadow-md shadow-purple-900/20'
+                  : 'text-slate-500 hover:text-purple-900'
               }`}
-          >
-            Pencarian Individual (ID SC)
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveTab('tim')}
-            className={`flex-1 py-2.5 text-xs sm:text-sm font-bold rounded-lg transition-all ${activeTab === 'tim'
-                ? 'bg-white text-[#6f2c91] shadow-sm'
-                : 'text-slate-500 hover:text-slate-700'
+            >
+              Pencarian Individual (ID SC)
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('tim')}
+              className={`flex-1 py-3 text-xs sm:text-sm font-extrabold rounded-xl transition-all ${
+                activeTab === 'tim'
+                  ? 'bg-gradient-to-r from-[#6f2c91] to-[#8c38b8] text-white shadow-md shadow-purple-900/20'
+                  : 'text-slate-500 hover:text-purple-900'
               }`}
-          >
-            Rekap Tim ASM
-          </button>
-        </div>
+            >
+              Rekap Tim ASM
+            </button>
+          </div>
 
         {/* Tab Content: AE */}
         {activeTab === 'ae' && (
@@ -316,6 +328,7 @@ export default function StepCekLead({ onBack, showToast, setLoader }) {
             )}
           </div>
         )}
+        </div>
       </div>
     </section>
   );

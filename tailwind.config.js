@@ -2,23 +2,33 @@
 export default {
   content: [
     "./index.html",
+    "./index.vite.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       colors: {
         brand: {
-          50: '#f4f7fb',
-          100: '#e6edf5',
-          200: '#cbd5e1',
-          500: '#5a699c',
-          600: '#465487',
-          700: '#2b3252',
-          800: '#1e243b',
+          50: '#faf5ff',
+          100: '#f3e8ff',
+          200: '#e9d5ff',
+          300: '#d8b4fe',
+          400: '#c084fc',
+          500: '#a855f7',
+          600: '#8c38b8',
+          700: '#6f2c91', // Utama MyRepublic
+          800: '#582173',
+          900: '#3f1354',
+          950: '#270836',
         }
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+      },
+      boxShadow: {
+        'glow-purple': '0 0 25px -5px rgba(111, 44, 145, 0.35)',
+        'glow-purple-lg': '0 10px 40px -10px rgba(111, 44, 145, 0.45)',
+        'premium': '0 20px 40px -15px rgba(0, 0, 0, 0.05), 0 0 1px 1px rgba(111, 44, 145, 0.08)',
       }
     },
   },

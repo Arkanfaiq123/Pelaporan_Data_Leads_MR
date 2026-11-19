@@ -150,265 +150,290 @@ export default function StepForm({ areaName, clusters, onBack, onFormSubmitted, 
   };
 
   return (
-    <section className="space-y-6 max-w-4xl mx-auto animate-in fade-in duration-300">
+    <section className="space-y-6 max-w-4xl mx-auto py-2 animate-in fade-in duration-300">
       <button
         type="button"
         onClick={onBack}
-        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#6f2c91] hover:text-[#582173] transition"
+        className="inline-flex items-center gap-2 text-xs font-bold text-[#6f2c91] hover:text-[#582173] px-3.5 py-1.5 rounded-xl hover:bg-purple-100/60 transition"
       >
         <ArrowLeft className="w-4 h-4" /> Kembali ke Strategi
       </button>
 
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        <div className="bg-[#6f2c91] p-5 text-white flex justify-between items-center">
-          <div>
-            <h3 className="font-extrabold text-lg">Form Kunjungan Prospek</h3>
-            <p className="text-[11px] text-purple-200">Silakan isi data calon pelanggan dengan akurat</p>
+      <div className="bg-white/95 backdrop-blur-md rounded-3xl border border-purple-100 shadow-xl shadow-purple-950/5 overflow-hidden">
+        {/* Form Header Banner */}
+        <div className="bg-gradient-to-r from-[#4a1264] via-[#6f2c91] to-[#390d4e] p-6 sm:p-8 text-white relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none -mt-10 -mr-10"></div>
+          <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <span className="text-[11px] font-black uppercase tracking-wider text-purple-200">
+                Formulir Kunjungan Prospek Sales
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mt-1">Input Data Leads</h2>
+              <p className="text-xs sm:text-sm text-purple-100/80 mt-1">
+                Lengkapi informasi prospek pelanggan dengan akurat untuk pencatatan sistem AE.
+              </p>
+            </div>
+            <div className="self-start sm:self-center px-4 py-1.5 bg-white/15 backdrop-blur-md border border-white/20 rounded-full text-xs font-black tracking-wider uppercase text-white shadow-sm">
+              {areaName}
+            </div>
           </div>
-          <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-black tracking-wider border border-white/30">
-            {areaName}
-          </span>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-5">
-          {/* Cari ID SC */}
-          <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1">
-              Cari ID SC UMP <span className="text-rose-500">*</span>
-            </label>
-            <div className="flex gap-2">
-              <input
-                type="text"
-                required
-                value={scIdInput}
-                onChange={(e) => setScIdInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                    handleSearchSc();
-                  }
-                }}
-                placeholder="Masukkan ID SC UMP..."
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f2c91] focus:border-[#6f2c91] transition"
-              />
-              <button
-                type="button"
-                onClick={handleSearchSc}
-                disabled={isSearchingSc}
-                className="bg-[#6f2c91] hover:bg-[#582173] text-white font-bold px-4 py-2 rounded-xl text-sm transition shadow-sm flex items-center gap-2 shrink-0 disabled:opacity-50"
-              >
-                <Search className="w-4 h-4" /> Cari
-              </button>
-            </div>
-            <p className="text-[11px] text-slate-400 mt-1">
-              Contoh ID SC Purwokerto: 6182994, 6213766, 6245785, atau tes 123.
-            </p>
-          </div>
+        <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-7">
+          {/* SECTION 1: IDENTITAS SALES AE */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-extrabold text-slate-800 uppercase tracking-wider flex items-center gap-2 border-b border-purple-100 pb-2">
+              <span className="w-6 h-6 rounded-lg bg-purple-100 text-[#6f2c91] flex items-center justify-center text-xs font-black">1</span>
+              Identitas Sales AE
+            </h3>
 
-          {/* ASM & AE */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Nama ASM</label>
-              <input
-                type="text"
-                readOnly
-                value={asm}
-                placeholder="Otomatis terisi..."
-                className="w-full bg-slate-100 border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-700 font-bold focus:outline-none cursor-not-allowed"
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Nama AE</label>
-              <input
-                type="text"
-                readOnly
-                value={ae}
-                placeholder="Otomatis terisi..."
-                className="w-full bg-slate-100 border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-700 font-bold focus:outline-none cursor-not-allowed"
-              />
-            </div>
-          </div>
-
-          {/* Cluster Combobox */}
-          <div className="relative" ref={clusterDropdownRef}>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1">
-              Nama Cluster <span className="text-rose-500">*</span>
-            </label>
-            <div className="relative">
-              <input
-                type="text"
-                required
-                value={clusterSearch}
-                onChange={(e) => {
-                  setClusterSearch(e.target.value);
-                  setIsClusterDropdownOpen(true);
-                }}
-                onFocus={() => setIsClusterDropdownOpen(true)}
-                placeholder="Ketik untuk cari Cluster kampus / perumahan..."
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-3 pr-10 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f2c91] focus:border-[#6f2c91] transition"
-              />
-              <div
-                className="absolute right-3 top-3 text-slate-400 cursor-pointer"
-                onClick={() => setIsClusterDropdownOpen(prev => !prev)}
-              >
-                <ChevronDown className="w-4 h-4" />
+              <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1">
+                Cari Berdasarkan ID SC UMP <span className="text-rose-500">*</span>
+              </label>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  required
+                  value={scIdInput}
+                  onChange={(e) => setScIdInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      handleSearchSc();
+                    }
+                  }}
+                  placeholder="Masukkan ID SC (Contoh: 1002 / 6182994)"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f2c91] focus:border-[#6f2c91] transition font-medium"
+                />
+                <button
+                  type="button"
+                  onClick={handleSearchSc}
+                  disabled={isSearchingSc}
+                  className="bg-gradient-to-r from-[#6f2c91] to-[#8c38b8] hover:from-[#582173] hover:to-[#6f2c91] text-white font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm flex items-center gap-2 shrink-0 disabled:opacity-50"
+                >
+                  <Search className="w-4 h-4" />
+                  <span>Cari Data</span>
+                </button>
               </div>
             </div>
 
-            {selectedCluster && (
-              <p className="text-[11px] text-[#6f2c91] font-bold mt-1 flex items-center gap-1">
-                <Check className="w-3.5 h-3.5" /> Terpilih: {selectedCluster}
-              </p>
-            )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">Nama ASM</label>
+                <input
+                  type="text"
+                  readOnly
+                  value={asm}
+                  placeholder="Terisi otomatis setelah pencarian ID SC..."
+                  className="w-full bg-slate-100/80 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-700 font-bold focus:outline-none cursor-not-allowed"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">Nama AE</label>
+                <input
+                  type="text"
+                  readOnly
+                  value={ae}
+                  placeholder="Terisi otomatis setelah pencarian ID SC..."
+                  className="w-full bg-slate-100/80 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-700 font-bold focus:outline-none cursor-not-allowed"
+                />
+              </div>
+            </div>
+          </div>
 
-            {isClusterDropdownOpen && (
-              <div className="absolute left-0 right-0 mt-1.5 bg-white border border-slate-200 rounded-xl shadow-xl max-h-56 overflow-y-auto z-50 divide-y divide-slate-50">
-                <div className="p-2 sticky top-0 bg-purple-50 border-b border-purple-100 text-[11px] font-bold text-[#6f2c91] tracking-wider">
-                  CARI DARI {areaClusters.length} CLUSTER ({areaName})
+          {/* SECTION 2: LOKASI & CLUSTER */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-extrabold text-slate-800 uppercase tracking-wider flex items-center gap-2 border-b border-purple-100 pb-2">
+              <span className="w-6 h-6 rounded-lg bg-purple-100 text-[#6f2c91] flex items-center justify-center text-xs font-black">2</span>
+              Lokasi & Klaster
+            </h3>
+
+            <div className="relative" ref={clusterDropdownRef}>
+              <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1">
+                Pilih Nama Cluster <span className="text-rose-500">*</span>
+              </label>
+              <div className="relative">
+                <input
+                  type="text"
+                  required
+                  value={clusterSearch}
+                  onChange={(e) => {
+                    setClusterSearch(e.target.value);
+                    setIsClusterDropdownOpen(true);
+                  }}
+                  onFocus={() => setIsClusterDropdownOpen(true)}
+                  placeholder="Ketik nama klaster / perumahan yang dituju..."
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-3.5 pr-10 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f2c91] focus:border-[#6f2c91] transition font-medium"
+                />
+                <div
+                  className="absolute right-3.5 top-3 text-slate-400 cursor-pointer"
+                  onClick={() => setIsClusterDropdownOpen(prev => !prev)}
+                >
+                  <ChevronDown className="w-4 h-4" />
                 </div>
-                {filteredClusters.length === 0 ? (
-                  <div className="p-4 text-center text-xs text-slate-400 font-medium italic">
-                    Cluster tidak ditemukan untuk kata kunci tersebut.
-                  </div>
-                ) : (
-                  filteredClusters.map((c, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => {
-                        setSelectedCluster(c);
-                        setClusterSearch(c);
-                        setIsClusterDropdownOpen(false);
-                      }}
-                      className="w-full text-left px-4 py-2.5 text-sm text-slate-700 hover:bg-purple-50 hover:text-[#6f2c91] transition-colors block"
-                    >
-                      {c}
-                    </button>
-                  ))
-                )}
               </div>
-            )}
-          </div>
 
-          <hr className="border-slate-100" />
+              {selectedCluster && (
+                <div className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 bg-purple-100/80 text-[#6f2c91] rounded-lg text-xs font-bold">
+                  <Check className="w-3.5 h-3.5 text-[#6f2c91]" />
+                  <span>Klaster Terpilih: {selectedCluster}</span>
+                </div>
+              )}
 
-          {/* Nama Capel & No HP */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1">
-                Nama Calon Pelanggan <span className="text-rose-500">*</span>
-              </label>
-              <input
-                type="text"
-                required
-                value={namaCapel}
-                onChange={(e) => setNamaCapel(e.target.value)}
-                placeholder="Masukkan nama lengkap calon pelanggan"
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f2c91] focus:border-[#6f2c91] transition"
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1">
-                Nomor WhatsApp / HP Capel <span className="text-rose-500">*</span>
-              </label>
-              <input
-                type="tel"
-                required
-                value={noHp}
-                onChange={handleNoHpChange}
-                maxLength={14}
-                placeholder="Contoh: 081234567890"
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f2c91] focus:border-[#6f2c91] transition"
-              />
-              {hpError && (
-                <p className="text-[11px] text-rose-500 mt-1">{hpError}</p>
+              {isClusterDropdownOpen && (
+                <div className="absolute left-0 right-0 mt-1.5 bg-white border border-slate-200 rounded-2xl shadow-xl max-h-56 overflow-y-auto z-50 divide-y divide-slate-50">
+                  <div className="p-2.5 sticky top-0 bg-purple-50 border-b border-purple-100 text-[11px] font-bold text-[#6f2c91] tracking-wider uppercase">
+                    Cari Dari {areaClusters.length} Klaster ({areaName})
+                  </div>
+                  {filteredClusters.length === 0 ? (
+                    <div className="p-4 text-center text-xs text-slate-400 font-medium italic">
+                      Klaster tidak ditemukan untuk kata kunci tersebut.
+                    </div>
+                  ) : (
+                    filteredClusters.map((c, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => {
+                          setSelectedCluster(c);
+                          setClusterSearch(c);
+                          setIsClusterDropdownOpen(false);
+                        }}
+                        className="w-full text-left px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-purple-50 hover:text-[#6f2c91] transition-colors block font-medium"
+                      >
+                        {c}
+                      </button>
+                    ))
+                  )}
+                </div>
               )}
             </div>
           </div>
 
-          {/* Alamat */}
-          <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1">
-              Alamat Lengkap Capel <span className="text-rose-500">*</span>
-            </label>
-            <textarea
-              rows="3"
-              required
-              value={alamat}
-              onChange={(e) => setAlamat(e.target.value)}
-              placeholder="Tuliskan alamat lengkap beserta patokan rumah atau blok..."
-              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f2c91] focus:border-[#6f2c91] transition"
-            />
-          </div>
+          {/* SECTION 3: DATA CALON PELANGGAN (CAPEL) */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-extrabold text-slate-800 uppercase tracking-wider flex items-center gap-2 border-b border-purple-100 pb-2">
+              <span className="w-6 h-6 rounded-lg bg-purple-100 text-[#6f2c91] flex items-center justify-center text-xs font-black">3</span>
+              Informasi Calon Pelanggan
+            </h3>
 
-          {/* ISP & Paket */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1">
-                ISP Saat Ini <span className="text-rose-500">*</span>
-              </label>
-              <input
-                type="text"
-                required
-                value={isp}
-                onChange={(e) => setIsp(e.target.value)}
-                placeholder="Contoh: Indihome, Biznet, Belum Berlangganan"
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f2c91] focus:border-[#6f2c91] transition"
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  Nama Calon Pelanggan <span className="text-rose-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={namaCapel}
+                  onChange={(e) => setNamaCapel(e.target.value)}
+                  placeholder="Nama Lengkap Calon Pelanggan"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f2c91] focus:border-[#6f2c91] transition font-medium"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  Nomor WhatsApp / HP <span className="text-rose-500">*</span>
+                </label>
+                <input
+                  type="tel"
+                  required
+                  value={noHp}
+                  onChange={handleNoHpChange}
+                  maxLength={14}
+                  placeholder="08xxxxxxxxxx"
+                  className={`w-full bg-slate-50 border rounded-xl px-3.5 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 transition font-medium ${
+                    hpError ? 'border-rose-400 focus:ring-rose-200' : 'border-slate-200 focus:ring-[#6f2c91] focus:border-[#6f2c91]'
+                  }`}
+                />
+                {hpError && <p className="text-[11px] text-rose-500 mt-1">{hpError}</p>}
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  Alamat Lengkap Capel <span className="text-rose-500">*</span>
+                </label>
+                <textarea
+                  rows="2"
+                  required
+                  value={alamat}
+                  onChange={(e) => setAlamat(e.target.value)}
+                  placeholder="Jalan, Blok, No. Rumah, RT/RW, Patokan..."
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f2c91] focus:border-[#6f2c91] transition font-medium resize-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  ISP Saat Ini <span className="text-rose-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={isp}
+                  onChange={(e) => setIsp(e.target.value)}
+                  placeholder="Contoh: Belum Berlangganan / Indihome"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f2c91] focus:border-[#6f2c91] transition font-medium"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  Pilih Paket Diminati <span className="text-rose-500">*</span>
+                </label>
+                <select
+                  required
+                  value={paket}
+                  onChange={(e) => setPaket(e.target.value)}
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f2c91] focus:border-[#6f2c91] transition font-semibold"
+                >
+                  <option value="" disabled>-- Pilih Paket Layanan --</option>
+                  {PRODUCTS_DATA.map((prod, i) => (
+                    <option key={i} value={prod.name}>
+                      {prod.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  Status Respon Lead / Follow-Up <span className="text-rose-500">*</span>
+                </label>
+                <select
+                  required
+                  value={statusLead}
+                  onChange={(e) => setStatusLead(e.target.value)}
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f2c91] focus:border-[#6f2c91] transition font-bold"
+                >
+                  <option value="" disabled>-- Kualifikasi Status Respon --</option>
+                  {LEAD_STATUS_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
-            <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1">
-                Pilih Paket Diminati <span className="text-rose-500">*</span>
-              </label>
-              <select
-                required
-                value={paket}
-                onChange={(e) => setPaket(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f2c91] focus:border-[#6f2c91] transition font-medium"
-              >
-                <option value="" disabled>-- Pilih Paket Layanan --</option>
-                {PRODUCTS_DATA.map((prod, i) => (
-                  <option key={i} value={prod.name}>{prod.name}</option>
-                ))}
-              </select>
-            </div>
           </div>
 
-          {/* Status Lead */}
-          <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1">
-              Status Lead / Follow-Up <span className="text-rose-500">*</span>
-            </label>
-            <select
-              required
-              value={statusLead}
-              onChange={(e) => setStatusLead(e.target.value)}
-              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f2c91] focus:border-[#6f2c91] transition font-bold"
-            >
-              <option value="" disabled>-- Pilih Status Lead --</option>
-              {LEAD_STATUS_OPTIONS.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Actions */}
-          <div className="pt-4 flex flex-col sm:flex-row gap-3">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="flex-1 py-3.5 bg-[#6f2c91] hover:bg-[#582173] text-white font-bold rounded-xl text-sm transition shadow-md flex items-center justify-center gap-2 disabled:opacity-50"
-            >
-              <Save className="w-4 h-4" /> Simpan Laporan Kunjungan
-            </button>
+          {/* ACTIONS */}
+          <div className="pt-6 border-t border-purple-100 flex flex-col sm:flex-row gap-3 justify-end">
             <button
               type="button"
               onClick={onBack}
-              className="py-3.5 px-6 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm transition flex items-center justify-center gap-2"
+              className="py-3 px-6 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-2xl text-xs sm:text-sm transition flex items-center justify-center gap-2 order-2 sm:order-1"
             >
               <X className="w-4 h-4" /> Batalkan
+            </button>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="py-3.5 px-8 bg-gradient-to-r from-[#6f2c91] to-[#8c38b8] hover:from-[#582173] hover:to-[#6f2c91] text-white font-extrabold rounded-2xl text-xs sm:text-sm transition-all shadow-md shadow-purple-900/20 hover:shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 order-1 sm:order-2"
+            >
+              <Save className="w-4 h-4" /> Simpan Laporan Kunjungan
             </button>
           </div>
         </form>
